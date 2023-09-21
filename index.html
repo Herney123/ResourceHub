@@ -8,19 +8,49 @@
     <meta name="author" content="GongWang">
     <link rel="stylesheet" href="plugs/layui/css/layui.css">
     <script type="text/javascript" src="plugs/layui/layui.js"></script>
-    <title>贡旺的万能资源库</title>
+    <title>[贡旺]'s Notebook</title>
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+    <ul class="layui-nav">
+        <li class="layui-nav-item layui-this"><a href="javascript:;" data-url="html/Treasures.html">百宝箱</a></li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+            <a href="javascript:;">
+                <img src="images/jerry.jpg" class="layui-nav-img">
+                GW
+            </a>
+            <dl class="layui-nav-child">
+                <dd><a href="https://en.gongwang.love">关于我</a></dd>
+            </dl>
+        </li>
+    </ul>
+    </div>
     <!-- 主体内容 -->
-    <div class="layui-body" id="LAY_app_body" style="padding: 15px;">
+    <div class="layui-body" id="LAY_app_body" style="padding: 15px;left: 0">
+        <iframe src="html/Treasures.html" frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+    <!-- 底部区域 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div style="text-align: center;left: 0" class="layui-footer">
+        <span id="busuanzi_container_site_pv">您是第<span id="busuanzi_value_site_pv"></span>个访问者</span>👀
     </div>
 </div>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div style="text-align: center;">
-    <span id="busuanzi_container_site_pv">您是第<span id="busuanzi_value_site_pv"></span>个访问者</span>👀
-</div>
 <script>
+    layui.use(function(){
+        var element = layui.element;
+        var $ = layui.jquery; //引入jQuery库
+
+        $(".layui-nav-item a").click(function() {
+            const url = $(this).data('url'); // 获取data-url的值
+            if (url) {
+                $("#LAY_app_body iframe").attr("src", url); // 设置iframe的src属性
+            }
+        });
+        element.render('nav');
+    });
 </script>
 </body>
 </html>
