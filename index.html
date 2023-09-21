@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="GongWang">
     <link rel="stylesheet" href="plugs/layui/css/layui.css">
+    <link id="layui_theme_css" rel="stylesheet">
     <script type="text/javascript" src="plugs/layui/layui.js"></script>
     <title>[贡旺]'s Notebook</title>
 </head>
@@ -18,6 +19,9 @@
         <li class="layui-nav-item"><a href="https://cairui.gongwang.love">恋爱档案</a></li>
     </ul>
     <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+            <i id="change-theme" class="layui-icon layui-icon-light" style="font-size: 20px"></i>
+        </li>
         <li class="layui-nav-item">
             <a href="javascript:;">
                 <img src="images/jerry.jpg" class="layui-nav-img">
@@ -43,12 +47,33 @@
     layui.use(function(){
         var element = layui.element;
         var $ = layui.jquery; //引入jQuery库
+        window.change_theme = $("#change-theme");
+        window.theme_css = $("#layui_theme_css");
 
         $(".layui-nav-item a").click(function() {
             const url = $(this).data('url'); // 获取data-url的值
             if (url) {
                 $("#LAY_app_body iframe").attr("src", url); // 设置iframe的src属性
             }
+        });
+        change_theme.click(function () {
+            let theme = "light";
+            if (change_theme.hasClass("layui-icon-light")) {
+                change_theme.removeClass("layui-icon-light");
+                change_theme.addClass("layui-icon-moon");
+                theme_css.attr("href", "plugs/layui/css/layui-theme-dark.css");
+                theme = "dark";
+            } else {
+                change_theme.removeClass("layui-icon-moon");
+                change_theme.addClass("layui-icon-light");
+                theme_css.removeAttr("href");
+                theme = "light";
+            }
+            // 向所有iframe发送消息
+            $("iframe").each(function() {
+                this.contentWindow.postMessage({ theme: theme }, "*");
+            });
+
         });
         element.render('nav');
     });

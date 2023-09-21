@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>百宝箱</title>
     <link rel="stylesheet" href="/plugs/layui/css/layui.css">
+    <link id="layui_theme_css" rel="stylesheet">
     <script type="text/javascript" src="/plugs/layui/layui.js"></script>
 </head>
 <body>
@@ -54,6 +55,7 @@
         const util = layui.util;
         const $ = layui.jquery; //引入jQuery库
         const zfb_btn = $('#zfb_btn');
+        const theme_css = $("#layui_theme_css");
         zfb_btn.click(function () {
             navigator.clipboard.writeText('复制 828456468 💯嗒开💯 z.hi.付寳去搜索，天天有.y ou 慧，就来 z.hi.付寳');
             layer.msg('复制成功,打开支付宝搜索即可');
@@ -68,7 +70,16 @@
             },
             css: {right: 30, bottom: 40}
         });
-
+        // 判断父页面change_theme
+        $(window).on("message", function(event) {
+            event = event.originalEvent;
+            let theme = event.data.theme;
+            if (theme === "dark") {
+                theme_css.attr("href", "/plugs/layui/css/layui-theme-dark.css");
+            } else {
+                theme_css.removeAttr("href");
+            }
+        });
     });
 </script>
 </body>
