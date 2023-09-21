@@ -60,7 +60,13 @@
         });
         // 右下角固定bar,只显示top
         util.fixbar({
-            bars: ['top'],
+            bar1: false,
+            click: function(type){
+                if(type === 'bar1'){
+                    window.location.href = 'https://www.gongwang.love';
+                }
+            },
+            css: {right: 30, bottom: 40}
         });
 
     });
