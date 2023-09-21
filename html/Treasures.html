@@ -36,9 +36,30 @@
             <a href="http://kk321.net/app/index.html?id=test" target="_blank" class="layui-btn layui-btn-primary layui-border-blue">电影资源4</a>
         </div>
     </div>
+    <div class="layui-panel">
+        <div style="padding: 32px;">
+            <blockquote class="layui-elem-quote">
+                省钱类
+            </blockquote>
+            <hr class="layui-border-red">
+            <a href="https://xuxubaobao.ug.ele.me/wow/alsc/mod/71f70bf57776ddbda7c94848?bc_fl_src=undefined&_ltracker_f=hjb_app_xbb&FastMode=1&actId=1&inviterId=15a5cfd4a&_ltracker_share_schema=app_outside_link&targetUrl=https%3A%2F%2Ftb.ele.me%2Fwow%2Falsc%2Fmod%2Fd5275789de46503ba0908a9d%3Ffrom%3Dzxj_wx_scan%26scene%3Dafb58b426d8c4ccaab1406f26ff8620f%26_ltracker_f%3Dhjb_app_xbb%26FastMode%3D1%26actId%3D1%26inviterId%3D15a5cfd4a%26_ltracker_share_schema%3Dapp_outside_link" target="_blank" class="layui-btn layui-btn-primary layui-border-blue">饿了么外卖红包</a>
+            <hr class="layui-border-blue">
+            <a href="javascript:;" class="layui-btn layui-btn-primary layui-border-blue" id="zfb_btn">支付宝红包</a>、
+        </div>
+    </div>
+    <br><br>
 </div>
 <script>
+    layui.use(function(){
+        const util = layui.util;
+        const $ = layui.jquery; //引入jQuery库
+        const zfb_btn = $('#zfb_btn');
+        zfb_btn.click(function () {
+            navigator.clipboard.writeText('复制 828456468 💯嗒开💯 z.hi.付寳去搜索，天天有.y ou 慧，就来 z.hi.付寳');
+            layer.msg('复制成功');
+        });
 
+    });
 </script>
 </body>
 </html>
