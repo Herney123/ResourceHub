@@ -132,7 +132,10 @@
             const search = search_content.val();
             const content = panel_content.text();
             // 如果content包含search
-            if (content.indexOf(search) !== -1) {
+            // 彩蛋
+            if (search === "老司机") {
+                window.open("https://pornhub.com");
+            } else if (content.indexOf(search) !== -1) {
                 const panels = ["panel1", "panel2", "panel3"];
                 // 跳转到对应的panel
                 for (let i = 0; i < panels.length; i++) {
