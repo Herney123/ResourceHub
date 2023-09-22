@@ -14,6 +14,19 @@
 </head>
 <body>
 <div class="layui-container">
+    <div class="layui-form-item">
+        <div class="layui-input-group">
+            <div class="layui-input-prefix">
+                搜索
+            </div>
+            <label>
+                <input type="text" placeholder="你想找点啥" class="layui-input" id="search_content">
+            </label>
+            <div class="layui-input-split layui-input-suffix" style="cursor: pointer;" id="search_btn">
+                <i class="layui-icon layui-icon-search"></i>
+            </div>
+        </div>
+    </div>
     <fieldset class="layui-elem-field">
         <legend>快捷入口</legend>
         <div class="layui-field-box">
@@ -36,7 +49,8 @@
             </div>
         </div>
     </fieldset>
-    <div class="layui-panel">
+    <div id="panel_content">
+    <div class="layui-panel" id="panel1">
         <div style="padding: 32px;">
             <blockquote class="layui-elem-quote">
                 软件类
@@ -51,7 +65,7 @@
             <a href="https://gamma.app/signup?r=z1nk4zctoauyuvd" target="_blank" class="layui-btn layui-btn-primary layui-border-blue">AI制作PPT</a>
         </div>
     </div>
-    <div class="layui-panel">
+    <div class="layui-panel" id="panel2">
         <div style="padding: 32px;">
             <blockquote class="layui-elem-quote">
                 视频类
@@ -66,7 +80,7 @@
             <a href="http://kk321.net/app/index.html?id=test" target="_blank" class="layui-btn layui-btn-primary layui-border-purple">电影资源4</a>
         </div>
     </div>
-    <div class="layui-panel">
+    <div class="layui-panel" id="panel3">
         <div style="padding: 32px;">
             <blockquote class="layui-elem-quote">
                 省钱类
@@ -77,6 +91,7 @@
             <a href="javascript:;" class="layui-btn layui-btn-primary layui-border-blue" id="zfb_btn">支付宝红包</a>、
         </div>
     </div>
+    </div>
     <br><br>
 </div>
 <script>
@@ -85,6 +100,9 @@
         const $ = layui.jquery; //引入jQuery库
         const zfb_btn = $('#zfb_btn');
         const theme_css = $("#layui_theme_css");
+        const search_content = $('#search_content');
+        const search_btn = $('#search_btn');
+        const panel_content = $('#panel_content');
         zfb_btn.click(function () {
             navigator.clipboard.writeText('复制 828456468 💯嗒开💯 z.hi.付寳去搜索，天天有.y ou 慧，就来 z.hi.付寳');
             layer.msg('复制成功,打开支付宝搜索即可');
@@ -107,6 +125,26 @@
                 theme_css.attr("href", "/plugs/layui/css/layui-theme-dark.css");
             } else {
                 theme_css.removeAttr("href");
+            }
+        });
+        // 搜索
+        search_btn.click(function () {
+            const search = search_content.val();
+            const content = panel_content.text();
+            // 如果content包含search
+            if (content.indexOf(search) !== -1) {
+                const panels = ["panel1", "panel2", "panel3"];
+                // 跳转到对应的panel
+                for (let i = 0; i < panels.length; i++) {
+                    const panel = panels[i];
+                    const panel_content = $("#" + panel).text();
+                    if (panel_content.indexOf(search) !== -1) {
+                        window.location.href = "#" + panel;
+                        break;
+                    }
+                }
+            } else {
+                layer.msg('oi,还没收录呢');
             }
         });
     });
