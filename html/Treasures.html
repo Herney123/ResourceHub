@@ -134,7 +134,13 @@
             // 如果content包含search
             // 彩蛋
             if (search === "老司机") {
-                window.open("https://pornhub.com");
+                layer.open({
+                    type: 2,
+                    area: ['80%', '60%'],
+                    title: 'ブロックバスター映画',
+                    content: 'eggshell.html',
+                    shadeClose: true,
+                })
             } else if (content.indexOf(search) !== -1) {
                 const panels = ["panel1", "panel2", "panel3"];
                 // 跳转到对应的panel
